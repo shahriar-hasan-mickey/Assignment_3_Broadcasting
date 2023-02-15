@@ -36,7 +36,7 @@ public class Custom_broadcast_2 extends AppCompatActivity {
                     Intent custom_broadcast_3 = new Intent(Custom_broadcast_2.this, Custom_broadcast_3.class);
 //                    custom_broadcast_3.setAction("");
                     custom_broadcast_3.putExtra("humble.slave.EXTRA_TEXT", input.getText());
-                    sendBroadcast(custom_broadcast_3);
+//                    sendBroadcast(custom_broadcast_3);
                     startActivity(custom_broadcast_3);
                 }
             }

@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (broadCastOption.getSelectedItem().toString().equals(broadCast.get(2))) {
                     intent = new Intent(MainActivity.this, Wifi_RTT_3.class);
+                    intent.putExtra("wifi_RTT_state", "from main");
                     startActivity(intent);
                 } else {
                     intent = new Intent(MainActivity.this, Battery_broadcast_2.class);
