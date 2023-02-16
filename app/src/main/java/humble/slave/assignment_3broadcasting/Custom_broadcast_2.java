@@ -12,11 +12,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class Custom_broadcast_2 extends AppCompatActivity {
 
     IntentFilter filter;
 //    Bundle extras;
+
+    public Intent nextIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class Custom_broadcast_2 extends AppCompatActivity {
         nextIntent(findViewById(R.id.forward));
 
         filter = new IntentFilter("humble.slave.CUSTOM_ACTION");
+
+        nextIntent = new Intent(Custom_broadcast_2.this, Custom_broadcast_3.class);
     }
 
     private void nextIntent(Button forward) {
@@ -35,14 +40,16 @@ public class Custom_broadcast_2 extends AppCompatActivity {
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextIntent = new Intent(Custom_broadcast_2.this, Custom_broadcast_3.class);
+
+
                 if(input.getText().toString().equals("")){
                     Toast.makeText(Custom_broadcast_2.this, "Cannot Forward Empty Field", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent custom_broadcast_3 = new Intent();
                     custom_broadcast_3.setAction("humble.slave.CUSTOM_ACTION");
-                    custom_broadcast_3.putExtra("humble.slave.EXTRA_TEXT", input.getText().toString());
-                    sendBroadcast(custom_broadcast_3);
+                    custom_broadcast_3.putExtra("humble.slave.EXTRA_TEXT", "input.getText().toString()");
+//                    sendBroadcast(custom_broadcast_3);
+                    LocalBroadcastManager.getInstance(Custom_broadcast_2.this).sendBroadcast(custom_broadcast_3);
 //                    startActivity(custom_broadcast_3);
 
 
@@ -61,10 +68,11 @@ public class Custom_broadcast_2 extends AppCompatActivity {
 //        }
 //    };
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startService(nextIntent);
+    }
 //        registerReceiver(broadcastReceiver, filter);
 //    }
 }

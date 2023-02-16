@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }, 1000);
                 } else if (broadCastOption.getSelectedItem().toString().equals(broadCast.get(1))) {
+
                     intent = new Intent(MainActivity.this, Custom_broadcast_2.class);
                     startActivity(intent);
                 } else if (broadCastOption.getSelectedItem().toString().equals(broadCast.get(2))) {
