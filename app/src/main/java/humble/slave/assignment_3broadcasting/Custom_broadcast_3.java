@@ -8,10 +8,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
 
 public class Custom_broadcast_3 extends AppCompatActivity {
 
-    ExampleBroadcastReceiver exampleBroadcastReceiver = new ExampleBroadcastReceiver();
+//    ExampleBroadcastReceiver exampleBroadcastReceiver = new ExampleBroadcastReceiver();
+
+    IntentFilter filter;
+
+    TextView output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,32 +28,30 @@ public class Custom_broadcast_3 extends AppCompatActivity {
 
 //        IntentFilter filter = new IntentFilter("humble.slave.CUSTOM_ACTION");
 //        registerReceiver(exampleBroadcastReceiver, filter);
+
+
+        filter = new IntentFilter("humble.slave.CUSTOM_ACTION");
+
+        output = findViewById(R.id.output);
     }
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            TextView output = findViewById(R.id.output);
-            output.setText(intent.getStringExtra("humble.slave.EXTRA_TEXT"));
+//            extras = getIntent().getExtras();
+            Toast.makeText(context, "made it till here"+intent.getAction().toString()+intent.getStringExtra("humble.slave.EXTRA_TEXT"), Toast.LENGTH_SHORT).show();
         }
     };
 
     @Override
     protected void onStart() {
         super.onStart();
-        IntentFilter filter = new IntentFilter("humble.slave.CUSTOM_ACTION");
+
         registerReceiver(broadcastReceiver, filter);
+        Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(broadcastReceiver);
-    }
 
-    //    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        unregisterReceiver(exampleBroadcastReceiver);
-//    }
+
 }
