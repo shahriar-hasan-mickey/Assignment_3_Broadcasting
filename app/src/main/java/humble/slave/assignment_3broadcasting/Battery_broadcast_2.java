@@ -28,6 +28,7 @@ public class Battery_broadcast_2 extends AppCompatActivity {
 //                TODO : In this part to simply get the numeric keypad we need to make the type tobe number : https://stackoverflow.com/questions/1119583/how-do-i-show-the-number-keyboard-on-an-edittext-in-android
                 if(Integer.parseInt(input.getText().toString()) < 100 && Integer.parseInt(input.getText().toString()) > 0){
                     Intent nextIntent = new Intent(Battery_broadcast_2.this, Battery_broadcast_3.class);
+                    nextIntent.putExtra("percentage", input.getText().toString());
                     startActivity(nextIntent);
                 }else{
                     Toast.makeText(Battery_broadcast_2.this, "Please insert a amount from 0-100", Toast.LENGTH_SHORT).show();

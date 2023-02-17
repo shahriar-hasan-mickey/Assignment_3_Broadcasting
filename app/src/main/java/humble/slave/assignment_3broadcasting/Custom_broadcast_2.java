@@ -19,11 +19,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 public class Custom_broadcast_2 extends AppCompatActivity {
 
     IntentFilter filter;
-//    Bundle extras;
     TextView output;
-
     EditText input;
-//    public Intent nextIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
